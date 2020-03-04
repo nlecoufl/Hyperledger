@@ -123,8 +123,8 @@ app.post('/api/addbulkdatas/', async function (req, res) {
         const obj = JSON.parse(json);
         objectLength = Object.keys(obj.data.stations).length
         for (let i = 0; i < objectLength; i++) {
-          var pas = i+20;
-          str = "DATA" + pas;    
+          var pas = i+21;
+          str = "DATA" + pas;  
           await contract.submitTransaction('createDatas', str, obj.data.stations[i].stationCode, obj.data.stations[i].station_id.toString(), obj.data.stations[i].num_bikes_available.toString(), obj.data.stations[i].numBikesAvailable.toString(), obj.data.stations[i].num_bikes_available_types[0].mechanical.toString(), obj.data.stations[i].num_bikes_available_types[1].ebike.toString(), obj.data.stations[i].num_docks_available.toString(), obj.data.stations[i].numDocksAvailable.toString(), obj.data.stations[i].is_installed.toString(), obj.data.stations[i].is_returning.toString(), obj.data.stations[i].is_renting.toString(), obj.data.stations[i].last_reported.toString());
           console.log('Transaction has been submitted');
         }
