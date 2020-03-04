@@ -41,8 +41,8 @@
  }
  
  type Datas struct {
-    LastUpdatedOther string `json:"lastUpdatedOther"`
-    Ttl string `json:"ttl"`
+    LastUpdatedOther int `json:"lastUpdatedOther"`
+    Ttl int `json:"ttl"`
     Data Stations `json:"data"`
 }
 
@@ -51,22 +51,22 @@ type Stations struct {
 }
 
 type Data struct {
-    StationCode   string `json:"stationCode"`
-    Station_id  string `json:"station_id"`
-    Num_bikes_available string `json:"num_bikes_available"`
-    NumBikesAvailable string  `json:"numBikesAvailable"`
+    StationCode string `json:"stationCode"`
+    Station_id  int `json:"station_id"`
+    Num_bikes_available int `json:"num_bikes_available"`
+    NumBikesAvailable int  `json:"numBikesAvailable"`
     Num_bikes_available_types  []Biketype `json:"num_bikes_available_types"`
-    Num_docks_available  string `json:"num_docks_available"`
-    NumDocksAvailable string `json:"numDocksAvailable"`
-    Is_intalled string `json:"is_intalled"`
-    Is_returning string `json:"is_returning"`
-    Is_renting string `json:"is_renting"`
-    Last_reported string `json:"last_reported"`
+    Num_docks_available  int `json:"num_docks_available"`
+    NumDocksAvailable int `json:"numDocksAvailable"`
+    Is_intalled int `json:"is_intalled"`
+    Is_returning int `json:"is_returning"`
+    Is_renting int `json:"is_renting"`
+    Last_reported int `json:"last_reported"`
 }
 
 type Biketype struct {
-    Mechanical string `json:"mechanical,omitempty"`
-    Ebike string `json:"ebike,omitempty"`
+    Mechanical int `json:"mechanical,omitempty"`
+    Ebike int `json:"ebike,omitempty"`
 }
  
  
@@ -173,12 +173,21 @@ type Biketype struct {
 func (s *SmartContract) createDatas(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) != 13 {
-		return shim.Error("Incorrect number of arguments. Expecting 12")
+		return shim.Error("Incorrect number of arguments. Expecting 13")
+	}
+	var args2 = []int{}
+	
+	for _, i := range args {
+		j, err := strconv.Atoi(i)
+		if err != nil {
+			panic(err)
+		}
+		args2 = append(args2, j)
 	}
 
-	var biketype1 = Biketype{Mechanical: args[5], Ebike: "0"}
-	var biketype2 = Biketype{Mechanical: "0", Ebike: args[6]}
-	var data = Data{StationCode: args[1], Station_id: args[2], Num_bikes_available: args[3], NumBikesAvailable: args[4], Num_bikes_available_types: []Biketype{biketype1,biketype2}, Num_docks_available: args[7], NumDocksAvailable: args[8], Is_intalled: args[9], Is_returning: args[10], Is_renting: args[11], Last_reported: args[12]}
+	var biketype1 = Biketype{Mechanical: args2[5], Ebike: 0}
+	var biketype2 = Biketype{Mechanical: 0, Ebike: args2[6]}
+	var data = Data{StationCode: args[1], Station_id: args2[2], Num_bikes_available: args2[3], NumBikesAvailable: args2[4], Num_bikes_available_types: []Biketype{biketype1,biketype2}, Num_docks_available: args2[7], NumDocksAvailable: args2[8], Is_intalled: args2[9], Is_returning: args2[10], Is_renting: args2[11], Last_reported: args2[12]}
 
 	dataAsBytes, _ := json.Marshal(data)
 	APIstub.PutState(args[0], dataAsBytes)
