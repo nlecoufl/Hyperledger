@@ -694,6 +694,7 @@ Le dossier src/ contient le server permettant de requêter sur notre chaincode.
         node serverbis.js
 
 Dans un autre terminal, on peut essayer :
+
         curl http://localhost:8080/api/queryalldatas
         curl http://localhost:8080/api/query/DATA4
         curl -H "Content-Type: application/json" -X POST http://localhost:8080/api/initbulk
