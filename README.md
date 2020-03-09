@@ -412,6 +412,7 @@ Fichier docker-compose.yaml :
         - byfn
 
 Fichier base/docker-compose-base.yaml :
+
     version: '2'
 
     services:
