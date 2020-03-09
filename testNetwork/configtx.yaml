@@ -151,7 +151,7 @@ Channel: &ChannelDefaults
 
 Profiles:
 
-    SupplyOrdererGenesis:
+    OrdererGenesis:
         <<: *ChannelDefaults
         Orderer:
             <<: *OrdererDefaults
@@ -166,7 +166,7 @@ Profiles:
                     - *Manufacturer
                     - *Deliverer
                     - *Retailer
-    SupplyChannel:
+    ChannelAll:
         Consortium: SampleConsortium
         <<: *ChannelDefaults
         Application:
