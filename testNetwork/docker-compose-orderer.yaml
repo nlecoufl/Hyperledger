@@ -1,0 +1,22 @@
+version: '2'
+
+volumes:
+  orderer.example.com:
+
+networks:
+  byfn:
+
+services:
+
+  orderer.example.com:
+    extends:
+      file:   base/docker-compose-base.yaml
+      service: orderer.example.com
+    container_name: orderer.example.com
+    extra_hosts:
+      - "peer0.deliverer.example.com:172.31.49.126"
+      - "peer0.manufacturer.example.com:172.31.59.117"
+      - "peer0.producer.example.com:172.31.58.78"
+      - "peer0.retailer.example.com:172.31.54.146"
+    networks:
+      - byfn
