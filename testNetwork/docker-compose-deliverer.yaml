@@ -14,6 +14,11 @@ services:
     extends:
       file:  base/docker-compose-base.yaml
       service: peer0.deliverer.example.com
+    extra_hosts:
+          - "orderer.example.com:172.31.63.181"
+            - "peer0.manufacturer.example.com:172.31.59.117"
+            - "peer0.producer.example.com:172.31.58.78"     
+            - "peer0.retailer.example.com:172.31.54.146"  
     networks:
       - byfn
 
