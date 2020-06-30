@@ -7,14 +7,14 @@ app.use(bodyParser.json());
 // Setting for Hyperledger Fabric
 const { FileSystemWallet, Gateway } = require('fabric-network');
 const path = require('path');
-const ccpPath = path.resolve(__dirname, '..','..', 'connections', 'connection-manufacturer.json');
+const ccpPath = path.resolve(__dirname, '..','..', 'connections', 'connection-producer.json');
 
 
 app.get('/api/queryalldatas', async function (req, res) {
     try {
 
         // Create a new file system based wallet for managing identities.
-        const walletPath = path.join(process.cwd(), '../wallet/wallet-manufacturer/');
+        const walletPath = path.join(process.cwd(), '../wallet/wallet-producer/');
         const wallet = new FileSystemWallet(walletPath);
         console.log(`Wallet path: ${walletPath}`);
 
@@ -56,7 +56,7 @@ app.get('/api/query/:data_index', async function (req, res) {
     try {
 
         // Create a new file system based wallet for managing identities.
-        const walletPath = path.join(process.cwd(), '../wallet/wallet-manufacturer/');
+        const walletPath = path.join(process.cwd(), '../wallet/wallet-producer/');
         const wallet = new FileSystemWallet(walletPath);
         console.log(`Wallet path: ${walletPath}`);
 
@@ -96,7 +96,7 @@ app.post('/api/addbulkdatas/', async function (req, res) {
     try {
   
         // Create a new file system based wallet for managing identities.
-        const walletPath = path.join(process.cwd(), '../wallet/wallet-manufacturer/');
+        const walletPath = path.join(process.cwd(), '../wallet/wallet-producer/');
         const wallet = new FileSystemWallet(walletPath);
         console.log(`Wallet path: ${walletPath}`);
   
@@ -142,7 +142,7 @@ app.post('/api/addbulkdatas/', async function (req, res) {
 app.post('/api/initbulk/', async function (req, res) {
     try {
         // Create a new file system based wallet for managing identities.
-        const walletPath = path.join(process.cwd(), '../wallet/wallet-manufacturer/');
+        const walletPath = path.join(process.cwd(), '../wallet/wallet-producer/');
         const wallet = new FileSystemWallet(walletPath);
         console.log(`Wallet path: ${walletPath}`);
   
